@@ -77,13 +77,15 @@ function startDrag(event) {
       console.log("...");
       actualCard.classList.add("reset");
       actualCard.classList.remove("go-right", "go-left");
+      actualCard
+        .querySelectorAll(".choice")
+        .forEach((el) => (el.style.opacity = 0));
     }
 
     // reset de variables
     actualCard.addEventListener("transitionend", () => {
       actualCard.removeAttribute("style");
       actualCard.classList.remove("reset");
-
       pullDeltaX = 0;
       isAnimating = false;
     });
