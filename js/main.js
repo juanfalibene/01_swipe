@@ -2,6 +2,55 @@ const DECISION_THRESHOLD = 80;
 let isAnimating = false;
 let pullDeltaX = 0; // diferencia entre dos posiciones
 
+import tracks from "./enchance_playlist_data.js";
+
+function createCard(track) {
+  const template = document.getElementById("track-template");
+  const card = template.content.cloneNode(true);
+
+  card.querySelector("img").src = track.imageUrl;
+  card.querySelector("img").alt = `${track.title} ${track.artists}`;
+  card.querySelector("h2 span").textContent = track.artist;
+  card.querySelector("h2").insertAdjacentHTML("afterbegin", track.title);
+  card.querySelector("audio").src = track.previewUrl;
+
+  const optionsContainer = card.querySelector(".options");
+  const trackButton = optionsContainer.querySelector(".is-track");
+  trackButton.dataset.id = track.id;
+  const albumButton = optionsContainer.querySelector(".is-album");
+  albumButton.dataset.id = track.id_album;
+  const artistButton = optionsContainer.querySelector(".is-artist");
+  artistButton.dataset.id = track.id_artist;
+  const playlistButton = optionsContainer.querySelector(".is-playlist");
+  playlistButton.dataset.id = "4CtnJsz8C41gCLjfD1HNUw";
+
+  trackButton.addEventListener("click", () => linkToSpotify(track.id, "track"));
+  albumButton.addEventListener("click", () =>
+    linkToSpotify(track.id_album, "album")
+  );
+  artistButton.addEventListener("click", () =>
+    linkToSpotify(track.id_artist, "artist")
+  );
+  playlistButton.addEventListener("click", () =>
+    linkToSpotify("4CtnJsz8C41gCLjfD1HNUw", "playlist")
+  );
+
+  return card;
+}
+
+function linkToSpotify(id, type) {
+  const spotifyUrl = `https://open.spotify.com/${type}/${id}`;
+  window.open(spotifyUrl, "_blank");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const appContainer = document.getElementById("app");
+  tracks.forEach((track) => {
+    const card = createCard(track);
+    appContainer.appendChild(card);
+  });
+});
+
 function startDrag(event) {
   if (isAnimating) return;
 
@@ -10,7 +59,6 @@ function startDrag(event) {
   if (!actualCard) return;
 
   // recuperar posicion inicial del mouse o finger
-  console.log(event);
   const startX = event.pageX ?? event.touches[0].pageX;
 
   // listen el mouse y touch movements
@@ -44,8 +92,6 @@ function startDrag(event) {
       : actualCard.querySelector(".choice.nope");
 
     choiceEl.style.opacity = opacity;
-
-    console.log(pullDeltaX);
   }
 
   function onEnd(event) {
@@ -60,7 +106,6 @@ function startDrag(event) {
     const decisionMade = Math.abs(pullDeltaX) >= DECISION_THRESHOLD;
 
     if (decisionMade) {
-      console.log("HECHA");
       const goRight = pullDeltaX > 0;
       const goLeft = !goRight;
 
@@ -74,7 +119,6 @@ function startDrag(event) {
         { once: true }
       );
     } else {
-      console.log("...");
       actualCard.classList.add("reset");
       actualCard.classList.remove("go-right", "go-left");
       actualCard
