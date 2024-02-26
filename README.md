@@ -10,8 +10,8 @@ Song of the Day is a web application that recommends 5 new tracks every day. It 
 
 ## Demo
 
-You can check out the live demo [here](http:dev.juanfalibene.com/sotd) [Replace with the URL of your live demo].
+You can check out the live demo [here](http:dev.juanfalibene.com/sotd)
 
 ## Credits
 
-This project was inspired by midudev's Tinder Swipe[here](https://github.com/midudev/javascript-100-proyectos/tree/main/01-tinder-swipe). Special thanks to midudev for the fantastic tutorial.
+This project was inspired by midudev's Tinder Swipe [here](https://github.com/midudev/javascript-100-proyectos/tree/main/01-tinder-swipe). Special thanks to midudev for the fantastic tutorial.
