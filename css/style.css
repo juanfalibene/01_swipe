@@ -9,7 +9,7 @@ body {
     place-content: center;
     min-height: 100dvh;
     user-select: none;
-    background-color: lightgray;
+    background-color: #000;
     overflow: hidden;
 }
 main {
@@ -22,14 +22,14 @@ main {
 }
 
 section {
-    background-color: #fafafa;
+    background-color: #1A1A1A;
     display: flex;
     flex-direction: column;
     gap: 12px;
     width: 100%;
     overflow: hidden;
     border-radius: 32px;
-    padding: 16px 6px;
+    padding: 12px 6px;
     margin: 15px 16px;
     position: relative;
 }
@@ -41,6 +41,7 @@ header {
     > h1 {
         font-size: 0.875em;
         line-height: 0.9em;
+        color: #fff;
     }
 }
 
@@ -49,23 +50,73 @@ header {
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    background: #2A2A2C;
+    border-radius: 8px 8px 28px 28px;
 
     & > span {
         font-size: 12px;
-        color: #333;
+        color: white;
         height: 100%;
         display: grid;
         place-content: center;
+        text-align: center;
+        line-height: 21px;
+        scale: 0.9;
+        transition: all .3s ease;
+
+        &  a {
+            color: #fefefe;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all .3s ease;
+        }
+
+        & a:hover {
+            color: rgb(255, 255, 45);
+            font-weight: 600;
+            opacity: 1;
+            scale: 1;
+        }
     }
 
     & article {
         position: absolute;
+        height: 100%;
         overflow: hidden;
-        border-radius: 8px;
+        border-radius: 8px 8px 28px 28px;
         cursor: grab;
-        /*inset: 0;*/
+        inset: 0;
         z-index: 2;
         box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+
+        & .options {
+            position: relative;
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            align-items: center;
+            padding: 12px;
+            gap: 12px;
+        
+            & button {
+                position: relative;
+                width: 100%;
+                height: 32px;
+                border-radius: 16px;
+                padding: 4px 12px;
+                border: 1px solid #717171;
+                color: #fefefe;
+                background-color: #2A2A2C;
+                cursor: pointer;
+                transition: scale .3s ease;
+                scale: 0.9;
+        
+                &:hover {
+                    scale: 1;
+                    color: #fff;
+                    border-color: #fff;
+                }
+            }
+        }
 
         & .choice {
             position: absolute;
@@ -79,15 +130,15 @@ header {
             opacity: 0;
             width: fit-content;
             text-shadow: 0 0 10px rgba(0, 0, 0, .3);
-            border-radius: 8px;
-            border: 4px solid;
+            border-radius: 50%;
+            vertical-align: middle;
 
             &.nope {
-                color: rgb(168, 35, 35);
+                background-color: rgb(255, 54, 54);
                 transform: rotate(30deg);
             }
             &.like {
-                color: rgb(35, 152, 35);
+                background-color: rgb(62, 255, 62);
                 transform: rotate(-30deg);
                 left: 16px;
 
@@ -108,74 +159,40 @@ header {
             transform: translateX(0) !important;
         }
 
-        & img {
+        & img{
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: max-content;
+            aspect-ratio: 1/1;
+            object-fit: contain;
         }
 
+        & audio {
+            width: 98%;
+            padding: 0 12px;
+        }
+
+        & audio::-webkit-media-controls-panel {
+            background-color: rgba(255, 255, 45, 0.8);
+          }
+
         & h2 {
-            position: absolute;
-            display: flex;
-            align-items: flex-end;
             width: 100%;
-            height: 100%;
-            inset: 0;
-            padding: 8px;
-            font-size: 16px;
+            height: max-content;
+            padding: 8px 4px;
+            font-size: 15px;
             z-index: 3;
-            color: #fff;
-            background: linear-gradient(to top, #00000088 20%, transparent 40%)
+            color: #fefefe;
+            background: #2A2A2C;
+            margin-top: -3px;
         }
 
         & span {
             margin-left: 6px;
-            font-size: 14px;
+            font-size: 12px;
             line-height: 1.4;
             font-weight: 400;
+            color: #e8e8e8;
         }
 
-    }
-}
-
-footer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    gap: 12px;
-
-    & button {
-        background: url("../img/tinder-icons.webp") no-repeat;
-        background-size: 175px;
-        background-position: 0 0;
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        border: 1px solid #ccc;
-        cursor: pointer;
-        transition: scale .3s ease;
-
-        &:hover {
-            scale: 1.2;
-        }
-        &.is-big {
-            background-size: 260px;
-            width: 48px;
-            height: 48px;
-        }
-        &.is-undo {
-            background-position: -143px 0;
-        }
-        &.is-remove {
-            background-position: -159px 0;
-        }
-        &.is-star {
-            background-position: -72px 0;
-        }
-        &.is-fav {
-            background-position: -53px 0;
-        }
     }
 }
