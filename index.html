@@ -6,6 +6,24 @@
     <title>Song of the day</title>
     <link rel="stylesheet" href="./css/style.css">
     <script type="module" src="js/main.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover new songs every day with Song of the Day. Get recommendations based on your Spotify preferences.">
+    <meta name="keywords" content="songs, music, recommendations, Spotify, Song of the Day">
+    <meta name="author" content="juanfalibene.com">
+
+    <!-- Social Media Sharing Meta Tags -->
+    <meta property="og:title" content="Song of the Day">
+    <meta property="og:description" content="Discover new songs every day with Song of the Day. Get recommendations based on your Spotify preferences.">
+    <meta property="og:image" content="https://mosaic.scdn.co/640/ab67616d00001e027cb3f1fb879c7680f394491bab67616d00001e02824380ca79ff1e28277ff500ab67616d00001e0283e0779f2098c011890decefab67616d00001e02a5116019a384ab131fc7dc92"> <!-- Replace with the URL of the image to use -->
+    <meta property="og:url" content="http://dev.juanfalibene.com/sotd/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card for Twitter Sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Song of the Day">
+    <meta name="twitter:description" content="Discover new songs every day with Song of the Day. Get recommendations based on your Spotify preferences.">
 </head>
 <body>
     <main>
@@ -13,16 +31,9 @@
         <header><h1>Song of the day</h1></header>
 
         <div class="cards" id="app">
-             <span>No more songs recommendations for today</span>
+             <span><p>No more songs recommendations for today</p><p><a href="https://github.com/juanfalibene/01_swipe" target="_blank">view on github</a><br /><a href="https://juanfalibene.com" target="_blank">juanfalibene.com</a></p>
+             </span>
         </div>
-
-        <footer>
-            <button class="is-undo" aria-label="undo"></button>
-            <button class="is-remove is-big" aria-label="remove"></button>
-            <button class="is-star" aria-label="star"></button>
-            <button class="is-fav is-big" aria-label="fav"></button>
-            <button class="is-zap" aria-label="zap"></button>
-        </footer>
     </main>
 </section>
 
@@ -31,8 +42,14 @@
         <img alt="" draggable="false">
         <h2><span></span></h2>
         <audio controls></audio>
-        <div class="choice nope">Nope</div>
-        <div class="choice like">Like</div>
+        <div class="options" id="options">
+            <button class="is-track" aria-label="track-link">Listen On Spotify</button>
+            <button class="is-album" aria-label="album-link">View Album</button>
+            <button class="is-artist" aria-label="artist-link">View Artist</button>
+            <button class="is-playlist" aria-label="playlist-link">Follow Playlist</button>
+        </div>
+        <div class="choice nope">👎</div>
+        <div class="choice like">👍</div>
         </article>
     </template>
 
